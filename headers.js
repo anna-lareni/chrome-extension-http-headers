@@ -19,6 +19,11 @@ function onEvent(debuggeeId, message, params) {
   if (tabId != debuggeeId.tabId)
     return;
 
+  var network = document.createElement("div");
+  network.textContent = params.request.url + " -> " +  JSON.stringify(params.initiator);
+  document.getElementById("container").appendChild(network);
+
+/*
   if (message == "Network.requestWillBeSent") {
     var requestDiv = requests[params.requestId];
     if (!requestDiv) {
@@ -41,6 +46,7 @@ function onEvent(debuggeeId, message, params) {
   } else if (message == "Network.responseReceived") {
     appendResponse(params.requestId, params.response);
   }
+  */
 }
 
 function appendResponse(requestId, response) {
